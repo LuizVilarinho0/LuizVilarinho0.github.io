@@ -296,7 +296,7 @@
   gap: 10px;
 }
 
-.agenda-cta {
+.cta-card {
   display: flex;
   align-items: center;
   gap: 16px;
@@ -308,15 +308,15 @@
   transition: transform 0.4s var(--ease);
 }
 
-.agenda-cta:hover {
+.cta-card:hover {
   transform: translateY(-3px) rotate(-0.6deg);
 }
 
-.agenda-cta > span {
+.cta-card > span {
   flex: 1;
 }
 
-.agenda-cta strong {
+.cta-card strong {
   display: block;
   font-size: 18px;
 }

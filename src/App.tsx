@@ -1,9 +1,8 @@
 import { AnimatePresence, MotionConfig } from 'framer-motion';
-import { Route, Routes, useLocation } from 'react-router-dom';
+import { Navigate, Route, Routes, useLocation } from 'react-router-dom';
 import { Footer } from './components/Footer';
 import { Header } from './components/Header';
 import { IntroProvider } from './components/Loader';
-import Agendar from './pages/Agendar';
 import Contato from './pages/Contato';
 import Home from './pages/Home';
 import NotFound from './pages/NotFound';
@@ -24,7 +23,7 @@ export default function App() {
             <Route path="/" element={<Home />} />
             <Route path="/trabalhos" element={<Trabalhos />} />
             <Route path="/trabalhos/:slug" element={<Projeto />} />
-            <Route path="/agendar" element={<Agendar />} />
+            <Route path="/agendar" element={<Navigate to="/contato" replace />} />
             <Route path="/contato" element={<Contato />} />
             <Route path="*" element={<NotFound />} />
           </Routes>

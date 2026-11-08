@@ -1,6 +1,6 @@
 {
   "name": "luizvilarinho/portfolio-api",
-  "description": "API do portfólio Luiz Vilarinho (agenda + contato)",
+  "description": "API do portfólio Luiz Vilarinho (formulário de contato)",
   "type": "project",
   "require": {
     "php": ">=7.4",

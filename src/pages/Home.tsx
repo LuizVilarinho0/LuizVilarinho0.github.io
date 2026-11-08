@@ -2,7 +2,7 @@ import { useEffect, useState, type ReactNode } from 'react';
 import { Link } from 'react-router-dom';
 import { AnimatePresence, LayoutGroup, motion } from 'framer-motion';
 import { useIntroDone } from '../components/Loader';
-import { IconArrowRight, IconArrowUpRight, IconDownload, IconSpark, IconWhatsapp } from '../components/Icons';
+import { IconArrowRight, IconArrowUpRight, IconDownload, IconLinkedin, IconSpark, IconWhatsapp } from '../components/Icons';
 import { Marquee } from '../components/Marquee';
 import { Page } from '../components/Page';
 import { ProjectCard } from '../components/ProjectCard';
@@ -82,8 +82,8 @@ function Hero() {
       <FadeIn className="hero__top">
         <span className="eyebrow">E-commerce · Marketplaces · Tecnologia</span>
         {site.disponivel && (
-          <Link to="/agendar" className="status">
-            <i aria-hidden="true" /> Disponível para reuniões
+          <Link to="/contato" className="status">
+            <i aria-hidden="true" /> Aberto a novas oportunidades
           </Link>
         )}
         <Agora />
@@ -122,8 +122,8 @@ function Hero() {
           </p>
         </FadeIn>
         <FadeIn className="hero__ctas" d={0.6}>
-          <Link to="/agendar" className="btn btn--orange roll-host">
-            <RollText>Agendar reunião</RollText>
+          <Link to="/contato" className="btn btn--orange roll-host">
+            <RollText>Fale comigo</RollText>
             <IconArrowUpRight width={18} height={18} />
           </Link>
           <a href={site.curriculo} download className="btn btn--outline roll-host">
@@ -415,15 +415,16 @@ function Chamada() {
         </Line>
       </h2>
       <Reveal className="cta__actions" delay={0.2}>
-        <Link to="/agendar" className="btn btn--orange btn--lg swap-host">
+        <Link to="/contato" className="btn btn--orange btn--lg swap-host">
           <span className="swap">
-            <span>Agendar reunião</span>
-            <span aria-hidden="true">Escolher um horário →</span>
+            <span>Mandar mensagem</span>
+            <span aria-hidden="true">Bora conversar →</span>
           </span>
         </Link>
-        <Link to="/contato" className="btn btn--outline btn--lg roll-host">
-          <RollText>Mandar mensagem</RollText>
-        </Link>
+        <a href={site.redes.linkedin} target="_blank" rel="noopener noreferrer" className="btn btn--outline btn--lg roll-host">
+          <IconLinkedin width={18} height={18} />
+          <RollText>LinkedIn</RollText>
+        </a>
         <a href={whatsappLink()} target="_blank" rel="noopener noreferrer" className="btn btn--ghost btn--lg roll-host">
           <IconWhatsapp width={20} height={20} />
           <RollText>WhatsApp</RollText>

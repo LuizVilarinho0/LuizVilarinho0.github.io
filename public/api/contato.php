@@ -68,7 +68,7 @@ if (!empty($cfg['email']['resposta_automatica'])) {
     try {
         $resposta = "Olá, {$nome}!\n\n"
             . "Recebi sua mensagem pelo meu portfólio e respondo o quanto antes.\n"
-            . "Se preferir, você também pode marcar um horário direto na minha agenda pelo site.\n\n"
+            . "Se for urgente, pode me chamar no WhatsApp: +55 16 99415-7389.\n\n"
             . "Sua mensagem:\n"
             . "----------------------------------------\n"
             . $mensagem . "\n"

@@ -11,7 +11,6 @@ export const LINKS = [
   { to: '/trabalhos', label: 'Trabalhos' },
   { to: '/#sobre', label: 'Sobre' },
   { to: '/#experiencia', label: 'Experiência' },
-  { to: '/agendar', label: 'Agendar' },
   { to: '/contato', label: 'Contato' },
 ];
 
@@ -71,7 +70,7 @@ export function Header() {
         </Link>
 
         <nav className="hdr__nav" aria-label="Principal">
-          {LINKS.slice(0, 4).map((l) => (
+          {LINKS.filter((l) => l.to !== '/contato').map((l) => (
             <SmartLink key={l.to} to={l.to} className={`roll-host${ativo(l.to) ? ' is-active' : ''}`}>
               <RollText>{l.label}</RollText>
             </SmartLink>

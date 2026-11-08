@@ -1,5 +1,5 @@
 import { site } from '../config';
-import type { AgendaResposta, AgendamentoConfirmado, AgendamentoPedido, ContatoPedido } from '../types';
+import type { ContatoPedido } from '../types';
 
 export class ApiError extends Error {
   constructor(
@@ -35,15 +35,6 @@ async function request<T>(path: string, init?: RequestInit): Promise<T> {
     throw new ApiError(obj?.erro ?? 'Algo deu errado. Tente de novo.', obj?.codigo ?? 'servidor', res.status);
   }
   return data as T;
-}
-
-export function buscarAgenda(inicio: string, fim: string, signal?: AbortSignal): Promise<AgendaResposta> {
-  const q = new URLSearchParams({ inicio, fim });
-  return request<AgendaResposta>(`agenda.php?${q}`, { signal, cache: 'no-store' });
-}
-
-export function agendar(pedido: AgendamentoPedido): Promise<{ ok: true; agendamento: AgendamentoConfirmado }> {
-  return request('agendar.php', { method: 'POST', body: JSON.stringify(pedido) });
 }
 
 export function enviarContato(pedido: ContatoPedido): Promise<{ ok: true; mensagem: string }> {

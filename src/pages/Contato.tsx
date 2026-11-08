@@ -1,7 +1,6 @@
 import { useRef, useState, type FormEvent } from 'react';
-import { Link } from 'react-router-dom';
 import { AnimatePresence, motion } from 'framer-motion';
-import { IconArrowUpRight, IconCalendar, IconCheck, IconMail } from '../components/Icons';
+import { IconArrowUpRight, IconCheck, IconDownload, IconMail } from '../components/Icons';
 import { Page } from '../components/Page';
 import { Line, Reveal } from '../components/Reveal';
 import { RollText } from '../components/RollText';
@@ -89,14 +88,14 @@ export default function Contato() {
             ))}
           </ul>
 
-          <Link to="/agendar" className="agenda-cta">
-            <IconCalendar width={26} height={26} />
+          <a href={site.curriculo} download className="cta-card">
+            <IconDownload width={26} height={26} />
             <span>
-              <strong>Prefere conversar ao vivo?</strong>
-              Escolha um horário na minha agenda.
+              <strong>Quer ver tudo em um só lugar?</strong>
+              Baixe meu currículo em PDF.
             </span>
             <IconArrowUpRight width={20} height={20} />
-          </Link>
+          </a>
         </Reveal>
 
         <Reveal className="contato__form" delay={0.1}>

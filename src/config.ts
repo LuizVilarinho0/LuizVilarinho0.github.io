@@ -1,6 +1,6 @@
 // =============================================================
 //  CONFIGURAÇÃO PÚBLICA DO SITE — contatos, redes e currículo
-//  (dados secretos — Google Agenda, senha do e-mail — ficam em
+//  (dados secretos, como a senha do e-mail, ficam em
 //   public/api/config.php, que o navegador nunca vê)
 // =============================================================
 
@@ -28,14 +28,10 @@ export const site = {
   /** Mostra o selo "disponível" no topo do site. */
   disponivel: true,
 
-  /** De quanto em quanto tempo a agenda se atualiza sozinha (ms). */
-  agendaAtualizaMs: 30_000,
-
   apiBase: '/api',
 
   /**
-   * true no GitHub Pages (que não roda PHP): o formulário envia pelo FormSubmit
-   * e a agenda convida para marcar pelo WhatsApp/e-mail.
+   * true no GitHub Pages (que não roda PHP): o formulário envia pelo FormSubmit.
    */
   estatico: import.meta.env.VITE_ESTATICO === '1',
 } as const;

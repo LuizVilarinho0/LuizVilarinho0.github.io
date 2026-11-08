@@ -36,60 +36,7 @@ export interface Experiencia {
   slug?: string;
 }
 
-// ---------- Agenda (API PHP) ----------
-
-export interface AgendaTipo {
-  id: string;
-  rotulo: string;
-  descricao: string;
-  duracao: number;
-}
-
-export interface AgendaSlot {
-  id: string;
-  rotulo: string;
-  inicio: string; // HH:MM
-  fim: string; // HH:MM
-  livre: boolean;
-}
-
-export interface AgendaResposta {
-  ok: true;
-  demo: boolean;
-  timezone: string;
-  atualizadoEm: string;
-  hoje: string; // YYYY-MM-DD
-  limite: string;
-  tipos: AgendaTipo[];
-  /** dias[YYYY-MM-DD][tipoId] = horários */
-  dias: Record<string, Record<string, AgendaSlot[]>>;
-}
-
-export type Formato = 'online' | 'ligacao' | 'presencial';
-
-export interface AgendamentoPedido {
-  tipo: string;
-  data: string;
-  slot: string;
-  nome: string;
-  email: string;
-  empresa?: string;
-  telefone?: string;
-  formato: Formato;
-  pauta?: string;
-  website?: string; // honeypot
-}
-
-export interface AgendamentoConfirmado {
-  tipo: string;
-  tipoRotulo: string;
-  data: string;
-  slot: string;
-  inicio: string;
-  fim: string;
-  formato: Formato;
-  linkReuniao: string;
-}
+// ---------- Contato ----------
 
 export interface ContatoPedido {
   nome: string;

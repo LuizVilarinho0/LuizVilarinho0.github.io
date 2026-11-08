@@ -197,7 +197,7 @@ function limite_processar(string $acao, int $maximo, int $janela, bool $registra
     fclose($fp);
 }
 
-/** Converte "AAAA-MM-DD" em data (meia-noite no fuso da agenda) ou null. */
+/** Converte "AAAA-MM-DD" em data (meia-noite no fuso configurado) ou null. */
 function data_iso($valor): ?DateTimeImmutable
 {
     if (!is_string($valor) || !preg_match('/^\d{4}-\d{2}-\d{2}$/', $valor)) {
