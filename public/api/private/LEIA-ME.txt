@@ -1,0 +1,6 @@
+Coloque aqui o arquivo JSON da conta de serviço do Google, com o nome:
+
+    google-service-account.json
+
+Esta pasta é bloqueada para acesso pelo navegador (.htaccess).
+Nunca envie esse arquivo por e-mail/WhatsApp nem o coloque no GitHub.

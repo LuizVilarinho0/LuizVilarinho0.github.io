@@ -1,0 +1,9 @@
+node_modules
+dist
+*.zip
+public/api/storage/*
+!public/api/storage/.htaccess
+public/api/private/*.json
+public/api/config.local.php
+# site antigo (HTML/CSS) — fica só no seu computador
+Novo-Portif-lio-Luiz-Vilarinho-main/

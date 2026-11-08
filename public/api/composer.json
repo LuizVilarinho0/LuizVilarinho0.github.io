@@ -1,0 +1,12 @@
+{
+  "name": "luizvilarinho/portfolio-api",
+  "description": "API do portfólio Luiz Vilarinho (agenda + contato)",
+  "type": "project",
+  "require": {
+    "php": ">=7.4",
+    "phpmailer/phpmailer": "^6.9"
+  },
+  "config": {
+    "optimize-autoloader": true
+  }
+}

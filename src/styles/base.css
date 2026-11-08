@@ -1,0 +1,490 @@
+/* =============================================================
+   BASE — tokens, reset, tipografia, botões
+   Paleta: tinta quase preta, papel creme, laranja (e-commerce)
+   e água (tecnologia).
+   ============================================================= */
+
+:root {
+  --ink: #0e0e0d;
+  --ink-2: #161615;
+  --ink-3: #1f1f1d;
+  --paper: #f1eee7;
+  --paper-2: #e4dfd4;
+  --orange: #ff6a2b;
+  --aqua: #2be4c8;
+  --muted: rgba(241, 238, 231, 0.6);
+  --faint: rgba(241, 238, 231, 0.38);
+  --line: rgba(241, 238, 231, 0.13);
+  --line-strong: rgba(241, 238, 231, 0.24);
+  --danger: #ff8f80;
+
+  --f-display: 'Archivo', 'Helvetica Neue', Arial, system-ui, sans-serif;
+  --f-serif: 'Instrument Serif', Georgia, 'Times New Roman', serif;
+  --f-mono: 'JetBrains Mono', ui-monospace, 'SFMono-Regular', Menlo, Consolas, monospace;
+
+  --gutter: clamp(16px, 4vw, 56px);
+  --hdr: 76px;
+  --radius: 22px;
+  --ease: cubic-bezier(0.16, 1, 0.3, 1);
+  --ease-io: cubic-bezier(0.76, 0, 0.24, 1);
+
+  color-scheme: dark;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  -webkit-text-size-adjust: 100%;
+  text-size-adjust: 100%;
+  scroll-behavior: smooth;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+}
+
+body {
+  margin: 0;
+  min-height: 100svh;
+  background: var(--ink);
+  color: var(--paper);
+  font-family: var(--f-display);
+  font-size: 17px;
+  line-height: 1.6;
+  font-stretch: 100%;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  overflow-x: hidden;
+}
+
+/* grão sutil por cima de tudo (dá textura ao preto) */
+body::after {
+  content: '';
+  position: fixed;
+  inset: 0;
+  z-index: 3000;
+  pointer-events: none;
+  opacity: 0.05;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+}
+
+img,
+svg,
+video {
+  display: block;
+  max-width: 100%;
+}
+
+img {
+  height: auto;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+button,
+input,
+textarea,
+select {
+  font: inherit;
+  color: inherit;
+}
+
+button {
+  cursor: pointer;
+  background: none;
+  border: 0;
+  padding: 0;
+}
+
+button:disabled {
+  cursor: not-allowed;
+}
+
+h1,
+h2,
+h3,
+h4,
+p,
+ul,
+ol,
+dl,
+dd,
+figure,
+fieldset {
+  margin: 0;
+}
+
+ul,
+ol {
+  padding: 0;
+  list-style: none;
+}
+
+fieldset {
+  border: 0;
+  padding: 0;
+  min-width: 0;
+}
+
+legend {
+  padding: 0;
+}
+
+::selection {
+  background: var(--orange);
+  color: var(--ink);
+}
+
+:focus-visible {
+  outline: 2px solid var(--aqua);
+  outline-offset: 3px;
+  border-radius: 6px;
+}
+
+.sr-only {
+  position: absolute !important;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+.skip {
+  position: fixed;
+  left: 12px;
+  top: -60px;
+  z-index: 4000;
+  padding: 10px 16px;
+  border-radius: 999px;
+  background: var(--paper);
+  color: var(--ink);
+  font-weight: 600;
+  transition: top 0.2s;
+}
+
+.skip:focus {
+  top: 12px;
+}
+
+.wrap {
+  width: 100%;
+  max-width: 1560px;
+  margin-inline: auto;
+  padding-inline: var(--gutter);
+}
+
+.muted {
+  color: var(--muted);
+}
+
+/* ------------------------------------------------------------ tipografia */
+
+.eyebrow {
+  display: inline-block;
+  font-family: var(--f-mono);
+  font-size: 12px;
+  font-weight: 500;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+
+.h-xxl,
+.h-xl,
+.h-lg,
+.hero__title,
+.cta__title {
+  font-family: var(--f-display);
+  font-weight: 800;
+  font-stretch: 112%;
+  text-transform: uppercase;
+  letter-spacing: -0.035em;
+  line-height: 0.88;
+}
+
+.h-xxl {
+  font-size: clamp(3.2rem, 11.5vw, 12rem);
+}
+
+.h-xl {
+  font-size: clamp(2.6rem, 7.2vw, 7.6rem);
+}
+
+.h-lg {
+  font-size: clamp(2rem, 4.6vw, 4.2rem);
+}
+
+/* o recurso das maiúsculas misturadas: palavra em itálico serifado e minúsculo */
+.h-xxl em,
+.h-xl em,
+.h-lg em,
+.hero__title em,
+.cta__title em {
+  font-family: var(--f-serif);
+  font-style: italic;
+  font-weight: 400;
+  font-stretch: 100%;
+  text-transform: none;
+  letter-spacing: -0.01em;
+  font-size: 1.08em;
+  line-height: 0.8;
+  padding-right: 0.04em;
+}
+
+.lead {
+  font-size: clamp(1.25rem, 2.1vw, 1.85rem);
+  line-height: 1.32;
+  font-weight: 500;
+  letter-spacing: -0.012em;
+}
+
+.line-mask {
+  display: block;
+  overflow: hidden;
+  padding-block: 0.12em 0.08em;
+  margin-block: -0.12em -0.08em;
+}
+
+.line-mask__in {
+  display: block;
+  will-change: transform;
+}
+
+/* ------------------------------------------------------------ texto que rola */
+
+.roll {
+  position: relative;
+  display: inline-flex;
+  overflow: hidden;
+  line-height: 1.2;
+  vertical-align: middle;
+}
+
+.roll__ch {
+  position: relative;
+  display: inline-block;
+  white-space: pre;
+  transition: transform 0.55s var(--ease);
+  transition-delay: calc(var(--i) * 14ms);
+}
+
+.roll__ch::after {
+  content: attr(data-ch);
+  position: absolute;
+  left: 0;
+  top: 100%;
+}
+
+@media (hover: hover) {
+  .roll-host:hover .roll__ch,
+  .roll-host:focus-visible .roll__ch {
+    transform: translateY(-100%);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .roll__ch {
+    transition: none;
+  }
+}
+
+.swap {
+  display: inline-grid;
+  overflow: hidden;
+  line-height: 1.2;
+}
+
+.swap > span {
+  grid-area: 1 / 1;
+  transition: transform 0.55s var(--ease);
+  white-space: nowrap;
+}
+
+.swap > span:last-child {
+  transform: translateY(110%);
+}
+
+@media (hover: hover) {
+  .swap-host:hover .swap > span:first-child {
+    transform: translateY(-110%);
+  }
+  .swap-host:hover .swap > span:last-child {
+    transform: translateY(0);
+  }
+}
+
+/* ------------------------------------------------------------ botões */
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  min-height: 50px;
+  padding: 14px 24px;
+  border-radius: 999px;
+  border: 1px solid transparent;
+  font-family: var(--f-display);
+  font-size: 15px;
+  font-weight: 600;
+  letter-spacing: 0.005em;
+  line-height: 1;
+  white-space: nowrap;
+  transition:
+    background-color 0.35s var(--ease),
+    color 0.35s var(--ease),
+    border-color 0.35s var(--ease),
+    transform 0.35s var(--ease);
+}
+
+.btn:active {
+  transform: scale(0.97);
+}
+
+.btn:disabled {
+  opacity: 0.45;
+  transform: none;
+}
+
+.btn--sm {
+  min-height: 42px;
+  padding: 10px 18px;
+  font-size: 14px;
+}
+
+.btn--lg {
+  min-height: 60px;
+  padding: 18px 32px;
+  font-size: 17px;
+}
+
+.btn--block {
+  width: 100%;
+}
+
+.btn--orange {
+  background: var(--orange);
+  color: var(--ink);
+}
+
+.btn--paper {
+  background: var(--paper);
+  color: var(--ink);
+}
+
+.btn--outline {
+  border-color: var(--line-strong);
+  color: var(--paper);
+}
+
+.btn--ghost {
+  color: var(--paper);
+  background: var(--ink-3);
+}
+
+@media (hover: hover) {
+  .btn--orange:hover:not(:disabled) {
+    background: var(--paper);
+  }
+  .btn--paper:hover:not(:disabled) {
+    background: var(--orange);
+  }
+  .btn--outline:hover:not(:disabled) {
+    background: var(--paper);
+    border-color: var(--paper);
+    color: var(--ink);
+  }
+  .btn--ghost:hover:not(:disabled) {
+    background: var(--aqua);
+    color: var(--ink);
+  }
+}
+
+.icon-btn {
+  display: grid;
+  place-items: center;
+  width: 42px;
+  height: 42px;
+  border-radius: 50%;
+  border: 1px solid var(--line-strong);
+  transition:
+    background-color 0.3s,
+    color 0.3s,
+    opacity 0.3s;
+}
+
+.icon-btn:hover:not(:disabled) {
+  background: var(--paper);
+  color: var(--ink);
+}
+
+.icon-btn:disabled {
+  opacity: 0.25;
+}
+
+.link-btn {
+  margin-top: 18px;
+  color: var(--muted);
+  text-decoration: underline;
+  text-underline-offset: 4px;
+}
+
+.link-btn:hover {
+  color: var(--paper);
+}
+
+.back {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  color: var(--muted);
+  font-size: 15px;
+  transition: color 0.25s;
+}
+
+.back:hover {
+  color: var(--paper);
+}
+
+/* ------------------------------------------------------------ chips */
+
+.chip {
+  display: inline-flex;
+  align-items: center;
+  padding: 6px 11px;
+  border-radius: 999px;
+  font-family: var(--f-mono);
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  line-height: 1.2;
+}
+
+.chip--ecommerce {
+  background: var(--orange);
+  color: var(--ink);
+}
+
+.chip--tech {
+  background: var(--aqua);
+  color: var(--ink);
+}
+
+.chip--ghost {
+  border: 1px solid var(--line-strong);
+  color: var(--muted);
+}
