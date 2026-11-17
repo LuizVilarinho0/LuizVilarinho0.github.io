@@ -177,6 +177,7 @@ export const projetos: Projeto[] = [
     ],
     aprendizados:
       'Evitar alarme falso pede tanta regra quanto reconhecer o rosto: confirmação em várias análises, tamanho mínimo do rosto e intervalo entre alertas.',
+    links: { github: 'https://github.com/LuizVilarinho0/safehome' },
     destaque: true,
   },
 
