@@ -544,3 +544,101 @@
   max-width: 30ch;
   color: var(--muted);
 }
+
+/* ------------------------------------------------------------ vídeo e galeria do projeto */
+
+.proj-video {
+  position: relative;
+  aspect-ratio: 16 / 9;
+  border-radius: 20px;
+  overflow: hidden;
+  background: var(--ink-2);
+}
+
+.proj-video iframe,
+.proj-video__capa {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  border: 0;
+}
+
+.proj-video__capa img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  filter: brightness(0.6);
+  transition:
+    filter 0.4s,
+    transform 0.8s var(--ease);
+}
+
+.proj-video__capa:hover img {
+  filter: brightness(0.75);
+  transform: scale(1.03);
+}
+
+.proj-video__play {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  translate: -50% -50%;
+  display: grid;
+  place-items: center;
+  width: 84px;
+  height: 84px;
+  border-radius: 50%;
+  background: var(--orange);
+  color: var(--ink);
+  padding-left: 4px;
+  transition: transform 0.4s var(--ease);
+}
+
+.proj-video__capa:hover .proj-video__play {
+  transform: scale(1.08);
+}
+
+.proj-video__rotulo {
+  position: absolute;
+  left: 20px;
+  bottom: 18px;
+  font-family: var(--f-mono);
+  font-size: 12px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--paper);
+}
+
+.proj-galeria {
+  display: grid;
+  gap: 20px;
+}
+
+.proj-galeria figure {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.proj-galeria img {
+  width: 100%;
+  border-radius: 14px;
+  border: 1px solid var(--line);
+}
+
+.proj-galeria figcaption {
+  font-size: 15px;
+  color: var(--muted);
+}
+
+@media (min-width: 1100px) {
+  .proj-galeria {
+    grid-template-columns: repeat(3, 1fr);
+  }
+  .proj-galeria img {
+    aspect-ratio: 4 / 3;
+    object-fit: cover;
+    object-position: left top;
+  }
+}

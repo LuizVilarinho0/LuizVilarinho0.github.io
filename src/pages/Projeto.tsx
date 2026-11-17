@@ -1,4 +1,4 @@
-import type { CSSProperties } from 'react';
+import { useState, type CSSProperties } from 'react';
 import { Link, useParams } from 'react-router-dom';
 import { CoverArt } from '../components/CoverArt';
 import { IconArrowLeft, IconArrowRight, IconArrowUpRight, IconGithub, IconSpark } from '../components/Icons';
@@ -7,6 +7,33 @@ import { Line, Reveal } from '../components/Reveal';
 import { RollText } from '../components/RollText';
 import { areaRotulo, projetos } from '../data/projetos';
 import NotFound from './NotFound';
+
+/** Vídeo do YouTube que só carrega depois do clique (página leve e sem rastreio antes). */
+function VideoYoutube({ id, titulo }: { id: string; titulo: string }) {
+  const [tocar, setTocar] = useState(false);
+  return (
+    <div className="proj-video">
+      {tocar ? (
+        <iframe
+          src={`https://www.youtube-nocookie.com/embed/${id}?autoplay=1&rel=0`}
+          title={titulo}
+          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+          allowFullScreen
+        />
+      ) : (
+        <button className="proj-video__capa" onClick={() => setTocar(true)} aria-label={`Assistir: ${titulo}`}>
+          <img src={`https://i.ytimg.com/vi/${id}/hqdefault.jpg`} alt="" loading="lazy" />
+          <span className="proj-video__play" aria-hidden="true">
+            <svg viewBox="0 0 24 24" width="30" height="30">
+              <path d="M8 5v14l11-7z" fill="currentColor" />
+            </svg>
+          </span>
+          <span className="proj-video__rotulo">{titulo}</span>
+        </button>
+      )}
+    </div>
+  );
+}
 
 export default function Projeto() {
   const { slug } = useParams();
@@ -93,6 +120,29 @@ export default function Projeto() {
             ))}
           </ol>
         </Reveal>
+
+        {p.video && (
+          <Reveal className="proj-block">
+            <h2 className="eyebrow">( demonstração )</h2>
+            <VideoYoutube id={p.video.youtube} titulo={p.video.titulo} />
+          </Reveal>
+        )}
+
+        {p.galeria && (
+          <Reveal className="proj-block">
+            <h2 className="eyebrow">( por dentro do código )</h2>
+            <div className="proj-galeria">
+              {p.galeria.map((g) => (
+                <figure key={g.src}>
+                  <a href={g.src} target="_blank" rel="noopener noreferrer" aria-label={`Ampliar: ${g.legenda}`}>
+                    <img src={g.src} alt={g.alt} loading="lazy" decoding="async" />
+                  </a>
+                  <figcaption>{g.legenda}</figcaption>
+                </figure>
+              ))}
+            </div>
+          </Reveal>
+        )}
 
         <Reveal className="proj-block">
           <h2 className="eyebrow">( ferramentas e competências )</h2>

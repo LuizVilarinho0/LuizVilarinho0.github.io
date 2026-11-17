@@ -122,6 +122,71 @@ function Terminal() {
   );
 }
 
+/** Silhueta genérica (cabeça + ombros) usada nas capas de visão computacional. */
+function Pessoa({ x, s = 1, box }: { x: string; s?: number; box?: { tipo: 'ok' | 'nao'; texto: string } }) {
+  return (
+    <span className="art__pessoa" style={{ left: x, scale: String(s) }}>
+      {box && (
+        <span className={'art__box art__box--' + box.tipo}>
+          <em>{box.texto}</em>
+        </span>
+      )}
+    </span>
+  );
+}
+
+function Embarque() {
+  return (
+    <div className="art art--embarque">
+      <div className="art__cam">
+        <span className="art__cam-top">
+          <b>Ônibus escolar · porta de entrada</b>
+          <i>● REC</i>
+        </span>
+        <i className="art__canto art__canto--tl" />
+        <i className="art__canto art__canto--tr" />
+        <i className="art__canto art__canto--bl" />
+        <i className="art__canto art__canto--br" />
+        <Pessoa x="20%" box={{ tipo: 'ok', texto: 'Aluno reconhecido · embarque confirmado' }} />
+        <Pessoa x="62%" s={0.82} box={{ tipo: 'nao', texto: 'Não reconhecido' }} />
+      </div>
+      <span className="art__pipe">YOLO → CLAHE → ArcFace → cosseno &lt; 0,68</span>
+    </div>
+  );
+}
+
+function Vigia() {
+  const cams = ['Portão', 'Garagem', 'Sala', 'Quintal'];
+  return (
+    <div className="art art--vigia">
+      <div className="art__mosaico">
+        {cams.map((c, i) => (
+          <div key={c} className="art__tela">
+            <span className="art__tela-nome">{c}</span>
+            {i === 0 && (
+              <>
+                <Pessoa x="38%" s={0.9} box={{ tipo: 'nao', texto: 'Desconhecido' }} />
+              </>
+            )}
+            {i === 2 && (
+              <>
+                <Pessoa x="26%" s={0.8} box={{ tipo: 'ok', texto: 'Morador' }} />
+              </>
+            )}
+          </div>
+        ))}
+      </div>
+      <div className="art__notif">
+        <span className="art__notif-foto" />
+        <span>
+          <b>SafeHome · agora</b>
+          Rosto não cadastrado na câmera Portão
+        </span>
+      </div>
+    </div>
+  );
+}
+
 export function CoverArt({ capa, eager = false }: { capa: Capa; eager?: boolean }) {
   if (capa.tipo === 'imagem') {
     return <img src={capa.src} alt={capa.alt} loading={eager ? 'eager' : 'lazy'} decoding="async" width={1440} height={900} />;
@@ -137,5 +202,9 @@ export function CoverArt({ capa, eager = false }: { capa: Capa; eager?: boolean 
       return <Marketplaces />;
     case 'terminal':
       return <Terminal />;
+    case 'embarque':
+      return <Embarque />;
+    case 'vigia':
+      return <Vigia />;
   }
 }

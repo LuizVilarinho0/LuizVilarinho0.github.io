@@ -36,6 +36,74 @@ export const projetos: Projeto[] = [
     destaque: true,
   },
   {
+    slug: 'safebus',
+    area: 'tech',
+    titulo: 'SafeBus',
+    chamada: 'Embarque no ônibus escolar liberado pelo rosto',
+    periodo: 'nov/2026',
+    ano: 2026,
+    papel: 'Desenvolvimento · APS em grupo (UNIP)',
+    tags: ['Visão computacional', 'IA', 'Desktop'],
+    stack: ['Python', 'OpenCV', 'YOLOv8', 'DeepFace / ArcFace', 'MySQL (Aiven)', 'PySide6 (Qt)', 'PyInstaller'],
+    capa: { tipo: 'arte', arte: 'embarque' },
+    cor: '#0D1210',
+    contexto:
+      'APS de Processamento Digital de Imagens na UNIP, feita em grupo. No transporte escolar, a conferência de quem embarca ainda é manual, e o aluno no ônibus errado muitas vezes só é percebido com o veículo já na estrada. A solução: uma câmera na porta do ônibus que reconhece o aluno e registra o embarque na hora.',
+    feitos: [
+      'Pipeline de visão: o YOLO detecta a pessoa, o CLAHE corrige a iluminação e o DeepFace (ArcFace) gera o vetor do rosto',
+      'Comparação por distância de cosseno com os alunos cadastrados, com limiar de 0,68',
+      'Regras de embarque e desembarque por ônibus, com vínculo, recusa e transferência registrada no histórico',
+      'Cadastro de alunos, responsáveis, ônibus e motoristas num MySQL na nuvem (Aiven), com conexão SSL',
+      'App desktop em PySide6 com login por perfil e senhas protegidas com PBKDF2; a câmera roda numa thread separada',
+      'Relatórios com exportação para CSV e executável para Windows gerado com PyInstaller',
+    ],
+    aprendizados:
+      'Foi o projeto em que levei visão computacional para um problema real de operação: banco de dados, regras de negócio e uma interface pensada para quem está na porta do ônibus.',
+    video: { youtube: 'lbcazQpTB08', titulo: 'Demonstração do SafeBus' },
+    galeria: [
+      {
+        src: '/images/projetos/safebus/1-iluminacao.webp',
+        alt: 'Código Python que aplica CLAHE no canal de luminosidade da imagem',
+        legenda: 'CLAHE no canal de luminosidade: corrige sombras e contraluz dentro do ônibus.',
+      },
+      {
+        src: '/images/projetos/safebus/2-yolo.webp',
+        alt: 'Código Python em que o YOLO detecta pessoas no quadro da câmera',
+        legenda: 'O YOLO encontra a pessoa no quadro antes de procurar o rosto.',
+      },
+      {
+        src: '/images/projetos/safebus/3-comparacao.webp',
+        alt: 'Código Python que calcula a distância de cosseno entre vetores faciais',
+        legenda: 'Distância de cosseno entre o rosto da câmera e os rostos cadastrados.',
+      },
+    ],
+    destaque: true,
+  },
+
+  {
+    slug: 'nobre-brasil',
+    area: 'ecommerce',
+    titulo: 'Nobre Brasil',
+    chamada: 'Catálogo e anúncios com foco em conversão',
+    periodo: 'set/2026 — atual',
+    ano: 2026,
+    papel: 'Analista de E-commerce',
+    tags: ['Marketplaces', 'Catálogo', 'Preço', 'Indicadores'],
+    stack: ['Gestão de anúncios', 'Catálogo', 'Competitividade de preço', 'Indicadores de venda', 'Estoque'],
+    capa: { tipo: 'arte', arte: 'catalogo' },
+    cor: '#F1EEE7',
+    contexto:
+      'Na Nobre Brasil atuo em tempo integral, de forma presencial, como analista de e-commerce. Meu foco é o que o cliente vê no marketplace: anúncio bem feito, catálogo organizado e preço competitivo.',
+    feitos: [
+      'Gestão de anúncios e catálogo em marketplaces, com foco em conversão e competitividade de preço',
+      'Acompanhamento de indicadores de vendas, estoque e desempenho comercial',
+      'Apoio às rotinas operacionais do e-commerce e à experiência do cliente',
+    ],
+    aprendizados:
+      'Escala muda tudo: com um catálogo grande, pequenos ajustes de título, foto e preço, repetidos com método, viram resultado.',
+    destaque: true,
+  },
+  {
     slug: 'site-ro-vilari',
     area: 'tech',
     titulo: 'Site Rô Vilari',
@@ -60,29 +128,6 @@ export const projetos: Projeto[] = [
       'Foi o projeto em que juntei front-end, back-end e integração com API externa num produto real, para uma cliente real, publicado em hospedagem compartilhada.',
     destaque: true,
   },
-  {
-    slug: 'nobre-brasil',
-    area: 'ecommerce',
-    titulo: 'Nobre Brasil',
-    chamada: 'Catálogo e anúncios com foco em conversão',
-    periodo: 'set/2026 — atual',
-    ano: 2026,
-    papel: 'Analista de E-commerce',
-    tags: ['Marketplaces', 'Catálogo', 'Preço', 'Indicadores'],
-    stack: ['Gestão de anúncios', 'Catálogo', 'Competitividade de preço', 'Indicadores de venda', 'Estoque'],
-    capa: { tipo: 'arte', arte: 'catalogo' },
-    cor: '#F1EEE7',
-    contexto:
-      'Na Nobre Brasil atuo em tempo integral, de forma presencial, como analista de e-commerce. Meu foco é o que o cliente vê no marketplace: anúncio bem feito, catálogo organizado e preço competitivo.',
-    feitos: [
-      'Gestão de anúncios e catálogo em marketplaces, com foco em conversão e competitividade de preço',
-      'Acompanhamento de indicadores de vendas, estoque e desempenho comercial',
-      'Apoio às rotinas operacionais do e-commerce e à experiência do cliente',
-    ],
-    aprendizados:
-      'Escala muda tudo: com um catálogo grande, pequenos ajustes de título, foto e preço, repetidos com método, viram resultado.',
-    destaque: true,
-  },
 
   {
     slug: 'nova-singular',
@@ -105,6 +150,33 @@ export const projetos: Projeto[] = [
     ],
     aprendizados:
       'Aprendi a ler os números de uma campanha e a conectar o clique com a venda: o mesmo raciocínio que uso para avaliar anúncios em marketplace.',
+    destaque: true,
+  },
+
+  {
+    slug: 'safehome',
+    area: 'tech',
+    titulo: 'SafeHome',
+    chamada: 'Câmeras de casa com reconhecimento facial e alerta no Telegram',
+    periodo: 'nov/2026',
+    ano: 2026,
+    papel: 'Desenvolvimento',
+    tags: ['Visão computacional', 'IA', 'Automação'],
+    stack: ['Python', 'OpenCV', 'YOLOv8', 'DeepFace / ArcFace', 'PostgreSQL', 'Telegram Bot API', 'CustomTkinter', 'RTSP'],
+    capa: { tipo: 'arte', arte: 'vigia' },
+    cor: '#0E1311',
+    contexto:
+      'Depois do SafeBus, levei o mesmo motor de reconhecimento facial para dentro de casa. O SafeHome vigia as câmeras e manda um alerta com foto no celular quando aparece um rosto que não é de ninguém da família.',
+    feitos: [
+      'Motor que é o único dono das câmeras (webcam ou câmera IP via RTSP), com reconexão automática se a câmera cair',
+      'Reconhecimento com YOLO, DeepFace (ArcFace) e distância de cosseno, reaproveitando o pipeline do SafeBus',
+      'Alerta com foto no Telegram só depois que o desconhecido é confirmado em várias análises seguidas, para evitar alarme falso',
+      'Painel com as abas Ao vivo, Pessoas e Eventos; cada foto de cadastro é validada na hora (um rosto nítido ou não serve)',
+      'API local com vídeo ao vivo (MJPEG), status e recarga do cadastro sem reiniciar o monitor',
+      'Botão "É conhecido": cadastra o rosto direto a partir de um alerta',
+    ],
+    aprendizados:
+      'Evitar alarme falso pede tanta regra quanto reconhecer o rosto: confirmação em várias análises, tamanho mínimo do rosto e intervalo entre alertas.',
     destaque: true,
   },
 

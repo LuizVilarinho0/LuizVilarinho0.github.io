@@ -1402,3 +1402,248 @@
     display: none;
   }
 }
+
+/* ------------------------------------------------------------ capas: visão computacional */
+
+/* silhueta genérica: cabeça + ombros */
+.art__pessoa {
+  position: absolute;
+  bottom: 0;
+  width: 17cqw;
+  height: 34cqw;
+  transform-origin: bottom center;
+}
+
+/* a caixa de detecção acompanha a cabeça da silhueta */
+.art__pessoa > .art__box {
+  left: 17%;
+  top: -5%;
+  width: 66%;
+  height: 40%;
+  z-index: 1;
+}
+
+.art__pessoa::before,
+.art__pessoa::after {
+  content: '';
+  position: absolute;
+  left: 50%;
+  translate: -50% 0;
+  background: linear-gradient(180deg, #3b4542, #232a28);
+}
+
+.art__pessoa::before {
+  top: 0;
+  width: 46%;
+  aspect-ratio: 0.82;
+  border-radius: 50% 50% 46% 46%;
+}
+
+.art__pessoa::after {
+  bottom: 0;
+  width: 100%;
+  height: 70%;
+  border-radius: 48% 48% 0 0;
+}
+
+.art__box {
+  position: absolute;
+  border: max(2px, 0.45cqw) solid;
+  border-radius: 0.6cqw;
+}
+
+.art__box em {
+  position: absolute;
+  left: -0.45cqw;
+  bottom: 100%;
+  margin-bottom: 0.5cqw;
+  padding: 0.5cqw 1.1cqw;
+  border-radius: 0.5cqw;
+  font-style: normal;
+  font-family: var(--f-mono);
+  font-size: 1.55cqw;
+  font-weight: 500;
+  color: var(--ink);
+  white-space: nowrap;
+}
+
+.art__box--ok {
+  border-color: #3ddc84;
+}
+
+.art__box--ok em {
+  background: #3ddc84;
+}
+
+.art__box--nao {
+  border-color: #ff5a4f;
+}
+
+.art__box--nao em {
+  background: #ff5a4f;
+}
+
+/* SafeBus: visão da câmera na porta do ônibus */
+.art--embarque {
+  background: radial-gradient(80% 70% at 50% 30%, rgba(43, 228, 200, 0.12), transparent 70%), #0d1210;
+}
+
+.art__cam {
+  position: absolute;
+  inset: 8% 6% 17%;
+  border-radius: 1.6cqw;
+  overflow: hidden;
+  background: linear-gradient(180deg, #1c2422 0%, #141a18 100%);
+}
+
+.art__cam-top {
+  position: absolute;
+  top: 3cqw;
+  left: 3cqw;
+  right: 3cqw;
+  z-index: 2;
+  display: flex;
+  justify-content: space-between;
+  font-family: var(--f-mono);
+  font-size: 1.6cqw;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--paper);
+}
+
+.art__cam-top b {
+  font-weight: 500;
+}
+
+.art__cam-top i {
+  font-style: normal;
+  color: #ff5a4f;
+}
+
+.art__canto {
+  position: absolute;
+  z-index: 2;
+  width: 4cqw;
+  height: 4cqw;
+  border: 0.5cqw solid var(--aqua);
+}
+
+.art__canto--tl {
+  top: 1.5cqw;
+  left: 1.5cqw;
+  border-right: 0;
+  border-bottom: 0;
+}
+
+.art__canto--tr {
+  top: 1.5cqw;
+  right: 1.5cqw;
+  border-left: 0;
+  border-bottom: 0;
+}
+
+.art__canto--bl {
+  bottom: 1.5cqw;
+  left: 1.5cqw;
+  border-right: 0;
+  border-top: 0;
+}
+
+.art__canto--br {
+  bottom: 1.5cqw;
+  right: 1.5cqw;
+  border-left: 0;
+  border-top: 0;
+}
+
+.art__pipe {
+  position: absolute;
+  left: 6%;
+  bottom: 6%;
+  font-family: var(--f-mono);
+  font-size: 1.9cqw;
+  letter-spacing: 0.04em;
+  color: var(--aqua);
+}
+
+/* SafeHome: mosaico de câmeras + notificação */
+.art--vigia {
+  background: #0e1311;
+}
+
+.art__mosaico {
+  position: absolute;
+  inset: 7% 6% 7% 6%;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1.4cqw;
+}
+
+.art__tela {
+  position: relative;
+  overflow: hidden;
+  border-radius: 1.2cqw;
+  background: linear-gradient(160deg, #1f2725, #121715);
+  container-type: inline-size;
+}
+
+.art__tela .art__pessoa {
+  width: 24cqw;
+  height: 46cqw;
+}
+
+.art__tela .art__box {
+  border-width: max(1.5px, 0.8cqw);
+}
+
+.art__tela .art__box em {
+  font-size: 4.2cqw;
+  padding: 0.8cqw 2cqw;
+}
+
+.art__tela-nome {
+  position: absolute;
+  top: 3cqw;
+  left: 4cqw;
+  font-family: var(--f-mono);
+  font-size: 4.6cqw;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+
+.art__notif {
+  position: absolute;
+  right: 4%;
+  bottom: 9%;
+  display: flex;
+  align-items: center;
+  gap: 1.6cqw;
+  width: 46%;
+  padding: 1.6cqw 2cqw;
+  border-radius: 1.8cqw;
+  background: var(--paper);
+  color: var(--ink);
+  font-size: 1.8cqw;
+  line-height: 1.3;
+  box-shadow: 0 2cqw 5cqw rgba(0, 0, 0, 0.45);
+}
+
+.art__notif b {
+  display: block;
+  font-size: 1.6cqw;
+  font-weight: 700;
+  color: #2a8bd8;
+}
+
+.art__notif-foto {
+  flex: none;
+  width: 6cqw;
+  height: 6cqw;
+  border-radius: 1cqw;
+  background:
+    radial-gradient(circle at 50% 38%, #4b5552 0 22%, transparent 23%),
+    radial-gradient(ellipse at 50% 100%, #4b5552 0 46%, transparent 47%),
+    #1a201e;
+  outline: 0.4cqw solid #ff5a4f;
+}

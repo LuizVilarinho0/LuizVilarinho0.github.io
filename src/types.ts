@@ -4,7 +4,7 @@ export type Area = 'ecommerce' | 'tech';
 
 export type Capa =
   | { tipo: 'imagem'; src: string; alt: string }
-  | { tipo: 'arte'; arte: 'funil' | 'catalogo' | 'ads' | 'marketplaces' | 'terminal' };
+  | { tipo: 'arte'; arte: 'funil' | 'catalogo' | 'ads' | 'marketplaces' | 'terminal' | 'embarque' | 'vigia' };
 
 export interface Projeto {
   slug: string;
@@ -24,6 +24,10 @@ export interface Projeto {
   feitos: string[];
   aprendizados: string;
   links?: { site?: string; github?: string };
+  /** id de um vídeo do YouTube (ex.: 'lbcazQpTB08') mostrado na página do projeto */
+  video?: { youtube: string; titulo: string };
+  /** imagens extras (prints de código, telas) mostradas na página do projeto */
+  galeria?: { src: string; alt: string; legenda: string }[];
   destaque?: boolean;
 }
 
