@@ -1,5 +1,5 @@
 import { useSearchParams } from 'react-router-dom';
-import { AnimatePresence, LayoutGroup, motion } from 'framer-motion';
+import { motion } from 'framer-motion';
 import { Page } from '../components/Page';
 import { ProjectCard } from '../components/ProjectCard';
 import { Line, Reveal } from '../components/Reveal';
@@ -42,34 +42,28 @@ export default function Trabalhos() {
       </section>
 
       <section className="works wrap" aria-label="Lista de trabalhos">
-        <LayoutGroup id="filtro-pg">
           <div className="filters filters--left" role="tablist" aria-label="Filtrar trabalhos">
             {(['tudo', 'ecommerce', 'tech'] as Filtro[]).map((f) => (
               <button key={f} role="tab" aria-selected={filtro === f} className={`filters__btn${filtro === f ? ' is-on' : ''}`} onClick={() => escolher(f)}>
-                {filtro === f && <motion.span layoutId="filtro-pill-pg" className="filters__pill" transition={{ type: 'spring', stiffness: 400, damping: 34 }} />}
                 <span>{f === 'tudo' ? 'Tudo' : areaRotulo[f]}</span>
                 <sup>{contagem(f)}</sup>
               </button>
             ))}
           </div>
-        </LayoutGroup>
 
-        <motion.div layout className="works__grid">
-          <AnimatePresence mode="popLayout">
-            {lista.map((p, i) => (
-              <motion.div
-                key={p.slug}
-                layout
-                initial={{ opacity: 0, y: 40 }}
-                animate={{ opacity: 1, y: 0 }}
-                exit={{ opacity: 0, scale: 0.96 }}
-                transition={{ duration: 0.6, ease }}
-              >
-                <ProjectCard p={p} index={i} />
-              </motion.div>
-            ))}
-          </AnimatePresence>
-        </motion.div>
+        {/* sem animação de saída: ela travava a troca de página depois de usar o filtro */}
+        <div className="works__grid">
+          {lista.map((p, i) => (
+            <motion.div
+              key={`${filtro}-${p.slug}`}
+              initial={{ opacity: 0, y: 40 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6, delay: i * 0.06, ease }}
+            >
+              <ProjectCard p={p} index={i} />
+            </motion.div>
+          ))}
+        </div>
       </section>
 
     </Page>

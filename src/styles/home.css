@@ -544,7 +544,9 @@
   font-size: 15px;
   font-weight: 600;
   color: var(--muted);
-  transition: color 0.3s;
+  transition:
+    color 0.3s,
+    background-color 0.35s var(--ease);
 }
 
 .filters__btn:hover {
@@ -553,6 +555,7 @@
 
 .filters__btn.is-on {
   color: var(--ink);
+  background: var(--paper);
 }
 
 .filters__pill {

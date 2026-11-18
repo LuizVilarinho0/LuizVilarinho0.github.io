@@ -1,6 +1,6 @@
 import { useEffect, useState, type ReactNode } from 'react';
 import { Link } from 'react-router-dom';
-import { AnimatePresence, LayoutGroup, motion } from 'framer-motion';
+import { AnimatePresence, motion } from 'framer-motion';
 import { useIntroDone } from '../components/Loader';
 import { IconArrowRight, IconArrowUpRight, IconDownload, IconLinkedin, IconSpark, IconWhatsapp } from '../components/Icons';
 import { Marquee } from '../components/Marquee';
@@ -220,35 +220,29 @@ function Trabalhos() {
             </Line>
           </h2>
         </div>
-        <LayoutGroup id="filtro-home">
           <div className="filters" role="tablist" aria-label="Filtrar trabalhos">
             {(['tudo', 'ecommerce', 'tech'] as Filtro[]).map((f) => (
               <button key={f} role="tab" aria-selected={filtro === f} className={`filters__btn${filtro === f ? ' is-on' : ''}`} onClick={() => setFiltro(f)}>
-                {filtro === f && <motion.span layoutId="filtro-pill" className="filters__pill" transition={{ type: 'spring', stiffness: 400, damping: 34 }} />}
                 <span>{f === 'tudo' ? 'Tudo' : areaRotulo[f]}</span>
                 <sup>{contagem(f)}</sup>
               </button>
             ))}
           </div>
-        </LayoutGroup>
       </header>
 
-      <motion.div layout className="works__grid">
-        <AnimatePresence mode="popLayout">
-          {lista.map((p, i) => (
-            <motion.div
-              key={p.slug}
-              layout
-              initial={{ opacity: 0, y: 40 }}
-              animate={{ opacity: 1, y: 0 }}
-              exit={{ opacity: 0, scale: 0.96 }}
-              transition={{ duration: 0.6, ease }}
-            >
-              <ProjectCard p={p} index={i} />
-            </motion.div>
-          ))}
-        </AnimatePresence>
-      </motion.div>
+      {/* sem animação de saída: ela travava a troca de página depois de usar o filtro */}
+      <div className="works__grid">
+        {lista.map((p, i) => (
+          <motion.div
+            key={`${filtro}-${p.slug}`}
+            initial={{ opacity: 0, y: 40 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, delay: i * 0.06, ease }}
+          >
+            <ProjectCard p={p} index={i} />
+          </motion.div>
+        ))}
+      </div>
 
       <div className="works__more">
         <Link to="/trabalhos" className="btn btn--paper btn--lg roll-host">
